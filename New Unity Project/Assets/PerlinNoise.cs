@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PerlinNoise : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public int width = 256;
+    public int height = 256;
+
+    void Start ()
+    {
+        Renderer renderer = GetComponent<Renderer>();  //reference to our current renderer
+        renderer.material.mainTexture = GenerateTexture();
+    }
+
+
 }
