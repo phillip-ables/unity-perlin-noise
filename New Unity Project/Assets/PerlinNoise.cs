@@ -7,6 +7,8 @@ public class PerlinNoise : MonoBehaviour {
 
     public float scale = 20f;
 
+    public float offSetX = 100f;
+    public float offSetY = 100f;
 
     void Update ()
     {
@@ -32,8 +34,8 @@ public class PerlinNoise : MonoBehaviour {
 
     Color CalculateColor (int x, int y)
     {
-        float xCoord = (float)x / width * scale; //coordinates are 20 bigger to give the effect of zooming in , crammed more perlin noise into our area
-        float yCoord = (float)y / height * scale;
+        float xCoord = (float)x / width * scale + offSetX; //coordinates are 20 bigger to give the effect of zooming in , crammed more perlin noise into our area
+        float yCoord = (float)y / height * scale + offSetY;
 
         float sample = Mathf.PerlinNoise(xCoord, yCoord);
         return new Color(sample, sample, sample);
