@@ -10,6 +10,12 @@ public class PerlinNoise : MonoBehaviour {
     public float offSetX = 100f;
     public float offSetY = 100f;
 
+    void Start()
+    {
+        offSetX = Random.Range(0f, 99999f);
+        offSetY = Random.Range(0f, 99999f);
+    }
+
     void Update ()
     {
         Renderer renderer = GetComponent<Renderer>();  //reference to our current renderer
