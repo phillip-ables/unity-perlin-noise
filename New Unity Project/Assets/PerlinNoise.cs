@@ -5,7 +5,10 @@ public class PerlinNoise : MonoBehaviour {
     public int width = 256;
     public int height = 256;
 
-    void Start ()
+    public float scale = 20f;
+
+
+    void Update ()
     {
         Renderer renderer = GetComponent<Renderer>();  //reference to our current renderer
         renderer.material.mainTexture = GenerateTexture();
@@ -23,15 +26,16 @@ public class PerlinNoise : MonoBehaviour {
                 texture.SetPixel(x, y, color);
             }
         }
+        texture.Apply();
         return texture;
     }
 
     Color CalculateColor (int x, int y)
     {
-        float xCoord = x / width;
-        float yCoord = y / height;
+        float xCoord = (float)x / width * scale; //coordinates are 20 bigger to give the effect of zooming in , crammed more perlin noise into our area
+        float yCoord = (float)y / height * scale;
 
-        float smaple = Mathf.PerflinNoise(x, y);
+        float sample = Mathf.PerlinNoise(xCoord, yCoord);
         return new Color(sample, sample, sample);
     }
 }
