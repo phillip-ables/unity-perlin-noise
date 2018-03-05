@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class PerlinNoise : MonoBehaviour {
 
     public int width = 256;
     public int height = 256;
 
-    public float scale = 20f;
+    public float scale = 12f;
 
     public float offSetX = 100f;
     public float offSetY = 100f;
+
+    public float speed = 40f;
 
     void Start()
     {
@@ -20,6 +23,28 @@ public class PerlinNoise : MonoBehaviour {
     {
         Renderer renderer = GetComponent<Renderer>();  //reference to our current renderer
         renderer.material.mainTexture = GenerateTexture();
+
+        if (Input.GetKey("up"))
+        {
+            MoveUp();
+
+        }
+
+        if (Input.GetKey("down"))
+        {
+            print("down arrow key is held down");
+            offSetY -= speed;
+        }
+        if (Input.GetKey("right"))
+        {
+            print("right");
+            offSetX += speed;
+        }
+        if(Input.GetKey("left"))
+        {
+            print("left");
+            offSetX -= speed;
+        }
     }
 
     Texture2D GenerateTexture()
@@ -45,5 +70,13 @@ public class PerlinNoise : MonoBehaviour {
 
         float sample = Mathf.PerlinNoise(xCoord, yCoord);
         return new Color(sample, sample, sample);
+    }
+
+
+    void MoveUp()
+    {
+        offSetY += speed;
+        print("up arrow key is held down");
+
     }
 }
